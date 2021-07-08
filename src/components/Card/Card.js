@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Owner from '../Owner/Owner';
 
+
 const CardWrapper = styled.div`
   text-align: left;
   padding: 1%;
@@ -27,6 +28,8 @@ const Meta = styled.div`
 const Count = styled.div`
   flex-basis: 80%;
 `;
+
+
 
 const Card = ({ data }) => (
   <CardWrapper>
