@@ -51,7 +51,9 @@ class Question extends Component {
   
 
     render() {
+        
         const {data, loading, error} = this.state
+        console.log(data)
         if (loading || error){
             return <Alert>
                 {loading ? 'Loading...' : error}
