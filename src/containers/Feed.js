@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom'
 import Card from '../components/Card/Card';
+import Helmet from 'react-helmet'
 
 
 const PaginationBar = styled.div
@@ -96,7 +97,13 @@ class Feed extends Component {
     const { page, data, loading, error } = this.state;
     const { match } = this.props
     if (loading || error) {
-      return <Alert>{loading ? 'Loading...' : error}</Alert>;
+      return (
+      <>
+      <Helmet>
+        <title>Q&A Feed Questions</title>
+      </Helmet>
+      <Alert>{loading ? 'Loading...' : error}</Alert>;
+      </>)
     }
 
     return (

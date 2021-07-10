@@ -4,6 +4,7 @@ import express from 'express'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter as Router} from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 //import entry point of application
 
@@ -23,6 +24,7 @@ app.get('/*', (req,res) => {
             <App />
         </Router>,
     )
+    const helmet = Helmet.renderStatic()
     const indexFile = path.resolve('./build/index.html')
     fs.readFile(indexFile, 'utf8', (err, data)=> {
         if (err) {
@@ -30,6 +32,7 @@ app.get('/*', (req,res) => {
             return res.status(500).send('Oops, better luck next time!')
         }
         data = data.replace('<div id="root"></div>', `<div id="root">${app}</div>`)
+        data = data.replace('<meta name="helmet" />', `${helmet.title.toString()}${helmet.htmlAttributes.toString()}`)
         return res.send(data)
     })
 })

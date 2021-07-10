@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Card from '../../components/Card/Card'
+import Helmet from 'react-helmet'
 
 const QuestionWrapper = styled.div
 `
@@ -56,9 +57,15 @@ class Question extends Component {
         const { match } = this.props
         
         if (loading || error){
-            return <Alert>
+            return (
+            <>
+            <Helmet>
+                <title>{`Q&A Feed - Question #${match.params.id}`}</title>
+            </Helmet>
+            <Alert>
                 {loading ? 'Loading...' : error}
             </Alert>
+            </>)
         }
         return (
             <QuestionWrapper>
