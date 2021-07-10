@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Card from '../Card/Card'
+import Card from '../../components/Card/Card'
 
 const QuestionWrapper = styled.div
 `
@@ -53,7 +53,8 @@ class Question extends Component {
     render() {
         
         const {data, loading, error} = this.state
-        console.log(data)
+        const { match } = this.props
+        
         if (loading || error){
             return <Alert>
                 {loading ? 'Loading...' : error}

@@ -45,9 +45,8 @@ const ROOT_API = 'https://api.stackexchange.com/2.2/';
 
 class Feed extends Component {
   constructor(props) {
-    console.log(props.location.search)
     super(props);
-    const query = queryString.parse(props.location.search)
+    const query = queryString.parse(this.props.location.search)
     this.state = {
       data: [],
       page: (query.page) ? parseInt(query.page) : 1,
@@ -57,7 +56,7 @@ class Feed extends Component {
   }
 
   async fetchAPI(page) {
-    console.log(page)
+   // console.log(page)
     try {
        const data = await fetch(`${ROOT_API}questions?order=desc&sort=activity&tagged=reactjs&site=stackoverflow${(page)? `&page=${page}` : ''}`)
        const dataJSON = await data.json()
@@ -81,7 +80,7 @@ class Feed extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps)
+   // console.log(prevProps)
       if (prevProps.location.search !== this.props.location.search) {
         const query = queryString.parse(this.props.location.search)
           this.setState({
